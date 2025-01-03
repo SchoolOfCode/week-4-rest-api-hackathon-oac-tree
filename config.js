@@ -1,6 +1,5 @@
 import { data } from "./database.js";
 
-let Movies = data.map((title) => ({...title}));
 export async function getMovies() {
   return data;
 }
@@ -19,9 +18,14 @@ export async function getMovieById(id) {
 
 export async function getMovieTitle(search) {
   const lowercased = search.toLowerCase();
-  return Movies.filter(({title}) => {
-    return title.toLowerCase().includes(lowercased)
+  return data.filter(({ title }) => {
+    return title.toLowerCase().includes(lowercased);
+  });
+}
 
-  })
-  
+export async function getMoviesByGenre(search) {
+  const lowercase = search.toLowerCase();
+  return data.filter(({ genre }) => {
+  return genre.toLowerCase().includes(lowercase);
+});
 }
